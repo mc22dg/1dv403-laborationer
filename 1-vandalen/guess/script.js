@@ -15,32 +15,24 @@ window.onload = function(){
 		counter++;
 		if (number == secret) {
 			
-			console.log("Grattis du vann! Det hemliga talet var " + secret + "  och du behövde " + counter + "gissningar för att hitta det.")
-			return true;
+			return [true, "Grattis du vann! Det hemliga talet var " + secret + "  och du behövde " + counter + " gissningar för att hitta det."]
+			
 		}
 			else if (number < 0 || number > 100) {
 			
-				console.log("Talet är utanför intervallet 0-100")
-				return false;
-			}
+				return [false, "Talet är utanför intervallet 0-100."]
+				}
 			
 			else if (number < secret) {
-				//console.log("Numret du gissade på är för lågt")
-				//return false;
-				
-				return "Det hemliga talet är högre!";
-			}
+			
+				return [false, "Det hemliga talet är högre."]
+				}
 			
 			else if (number > secret) {
 				
-				console.log("Numret du gissade på är för högt")
-				return false;
-			}
-			
-		
-			
+				return [false, "Det hemliga talet är lägre."]
+				}
 
-			
 		// Returnera exempelvis: 
 		// [true, "Grattis du vann! Det hemliga talet var X och du behövde Y gissningar för att hitta det."]
 		// [false, "Det hemliga talet är högre!"]
