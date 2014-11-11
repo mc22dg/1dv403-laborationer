@@ -7,7 +7,7 @@ window.onload = function(){
 		
 			//Hämtar dagens datum
 			var birthdayNextTime = new Date();
-			 
+			 //Här väljer användaren sitt datum
 			var dateToday = new Date(date)
 			
 			if(isNaN(dateToday))
@@ -17,17 +17,22 @@ window.onload = function(){
 				
 				//setFullYear = Sets the year (four digits) of a date object
 				//getFullYear = Returns the year (four digits)
-				//
+				//Aktuellt år
 				birthdayNextTime.setFullYear(dateToday.getFullYear());
 			
+				//Om aktuell tid gått förbi födelsedagen som använadren angivit
 			if (dateToday > birthdayNextTime) {
 				birthdayNextTime.setFullYear(dateToday.getFullYear()+1);
 				
 			}
 			
-				//floor = Returns x, rounded downwards to the nearest integer
 			var diff = birthdayNextTime.setTime() - dateToday.getTime()
 			var days = Math.ceil(diff/(1000*60*60*24))
+			
+			if (days === 365) {
+				
+				return
+			}
 				 
 				
 			} else{
