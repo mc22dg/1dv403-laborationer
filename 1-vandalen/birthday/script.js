@@ -5,8 +5,13 @@ window.onload = function(){
 	
 	var birthday = function(date){
 		
+			//Hämtar dagens datum
 			var birthdayNextTime = new Date();
+			 
 			var dateToday = new Date(date)
+			
+			if(isNaN(dateToday))
+			{
 	
 			if (birthdayNextTime > dateToday) {
 				
