@@ -17,10 +17,18 @@ window.onload = function(){
 				
 				//setFullYear = Sets the year (four digits) of a date object
 				//getFullYear = Returns the year (four digits)
+				//
 				birthdayNextTime.setFullYear(dateToday.getFullYear());
 			
-			//floor = Returns x, rounded downwards to the nearest integer
-			return Math.floor((birthdayNextTime.getTime() - dateToday.getTime()) * ());
+			if (dateToday > birthdayNextTime) {
+				birthdayNextTime.setFullYear(dateToday.getFullYear()+1);
+				
+			}
+			
+				//floor = Returns x, rounded downwards to the nearest integer
+			var diff = birthdayNextTime.setTime() - dateToday.getTime()
+			var days = Math.ceil(diff/(1000*60*60*24))
+				 
 				
 			} else{
 			throw new Error ("Något gick mindre bra!")
