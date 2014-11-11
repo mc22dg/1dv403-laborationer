@@ -5,10 +5,21 @@ window.onload = function(){
 	
 	var birthday = function(date){
 		
-
-
-			// Din kod här.
-
+			var birthdayNextTime = new Date();
+			var dateToday = new Date(date)
+	
+			if (birthdayNextTime > dateToday) {
+				
+				//setFullYear = Sets the year (four digits) of a date object
+				//getFullYear = Returns the year (four digits)
+				birthdayNextTime.setFullYear(dateToday.getFullYear());
+			
+			//floor = Returns x, rounded downwards to the nearest integer
+			return Math.floor((birthdayNextTime.getTime() - dateToday.getTime()) * ());
+				
+			} else{
+			throw new Error ("Något gick mindre bra!")
+			}
 
 
 

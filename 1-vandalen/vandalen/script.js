@@ -2,8 +2,10 @@
 
 var makePerson = function(persArr){
 
-
-	// Din kod här...
+    var arr = []
+	var = name
+	
+	var = age
 
 }
 
