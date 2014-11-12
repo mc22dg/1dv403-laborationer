@@ -5,43 +5,42 @@ window.onload = function(){
 	
 	var birthday = function(date){
 		
-			//Hämtar dagens datum
-			var birthdayNextTime = new Date();
 			 //Här väljer användaren sitt datum
-			var dateToday = new Date(date)
+			var birthdayNextTime = new Date(date);
+			 //Hämtar dagens datum
+			var dateToday = new Date();
 			
-			if(isNaN(dateToday))
-			{
+	if(isNaN(birthdayNextTime))
+	{
+		throw {'message' : "Datumet är ej giltigt!"};
+	}
 	
-			if (birthdayNextTime > dateToday) {
-				
-				//setFullYear = Sets the year (four digits) of a date object
-				//getFullYear = Returns the year (four digits)
-				//Aktuellt år
-				birthdayNextTime.setFullYear(dateToday.getFullYear());
+	if (birthdayNextTime > dateToday) 
+	{
+		throw {'message' : "Du har angivit ett datum för långt fram i tiden!"};
 			
-				//Om aktuell tid gått förbi födelsedagen som använadren angivit
-			if (dateToday > birthdayNextTime) {
-				birthdayNextTime.setFullYear(dateToday.getFullYear()+1);
-				
+	}
+					
+			//setFullYear = Sets the year (four digits) of a date object
+			//getFullYear = Returns the year (four digits)
+			//Aktuellt år
+			birthdayNextTime.setFullYear(dateToday.getFullYear());
+			dateToday.getDate(dateToday.getDate()-1)
+					
+			//Om aktuell tid gått förbi födelsedagen som använadren angivit
+			if (dateToday > birthdayNextTime) 
+			{
+				birthdayNextTime.setFullYear(birthdayNextTime.getFullYear()+1);
+						
 			}
-			
-			var diff = birthdayNextTime.setTime() - dateToday.getTime()
-			var days = Math.ceil(diff/(1000*60*60*24))
-			
-			if (days === 365) {
+						
+				var diff = birthdayNextTime.getTime() - dateToday.getTime();
+				//Math.ceil avrundar ett tal uppåt. Diff = skillnaden mellan dagens datum och datumet då användaren fyller år delat med 86400000 
+				var days = Math.ceil(diff/(1000*60*60*24));
 				
-				return
-			}
-				 
-				
-			} else{
-			throw new Error ("Något gick mindre bra!")
-			}
+				return days;
+		}; 
 
-
-
-	};
 	// ------------------------------------------------------------------------------
 
 
