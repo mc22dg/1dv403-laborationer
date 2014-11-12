@@ -2,10 +2,14 @@
 
 var makePerson = function(persArr){
 
-    var arr = []
-	var = name
-	
-	var = age
+var result = {};
+var = names
+var = age
+
+var maxAge = 
+var minAGe
+var averageAge
+
 
 }
 
