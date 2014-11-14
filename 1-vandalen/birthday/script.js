@@ -10,35 +10,41 @@ window.onload = function(){
 			 //Hämtar dagens datum
 			var dateToday = new Date();
 			
-	if(isNaN(birthdayNextTime))
-	{
-		throw {'message' : "Datumet är ej giltigt!"};
-	}
-	
-	if (birthdayNextTime > dateToday) 
-	{
-		throw {'message' : "Du har angivit ett datum för långt fram i tiden!"};
+			if(isNaN(birthdayNextTime))
+			{
+				throw {'message' : "Datumet är ej giltigt!"};
+			}
 			
-	}
+			
+		
+			if(
+				(birthdayNextTime.getFullYear() > dateToday.getFullYear()) ||
+				(birthdayNextTime.getFullYear() === dateToday.getFullYear() && birthdayNextTime.getMonth() > dateToday.getMonth() ) ||
+				(birthdayNextTime.getFullYear() === dateToday.getFullYear() && birthdayNextTime.getMonth() === dateToday.getMonth() && birthdayNextTime.getDate() > dateToday.getDate()))
+			{
+				throw {'message' : "Du har angivit ett datum för långt fram i tiden!"};
+			}
 					
 			//setFullYear = Sets the year (four digits) of a date object
 			//getFullYear = Returns the year (four digits)
 			//Aktuellt år
 			birthdayNextTime.setFullYear(dateToday.getFullYear());
-			dateToday.getDate(dateToday.getDate()-1)
+			dateToday.setDate(dateToday.getDate()-1);
 					
 			//Om aktuell tid gått förbi födelsedagen som använadren angivit
 			if (dateToday > birthdayNextTime) 
 			{
+				//Här läggs det på ett år
 				birthdayNextTime.setFullYear(birthdayNextTime.getFullYear()+1);
-						
+				
 			}
 						
-				var diff = birthdayNextTime.getTime() - dateToday.getTime();
-				//Math.ceil avrundar ett tal uppåt. Diff = skillnaden mellan dagens datum och datumet då användaren fyller år delat med 86400000 
-				var days = Math.ceil(diff/(1000*60*60*24));
-				
-				return days;
+			//var diff = birthdayNextTime.getTime() - dateToday.getTime();
+			//Math.ceil avrundar ett tal uppåt. Diff = skillnaden mellan dagens datum och datumet då användaren fyller år delat med 86400000 
+			//var days = Math.ceil((birthdayNextTime - dateToday) / (1000*60*60*24));
+			var days = Math.floor((birthdayNextTime - dateToday) / (1000*60*60*24));
+			
+			return days;
 		}; 
 
 	// ------------------------------------------------------------------------------

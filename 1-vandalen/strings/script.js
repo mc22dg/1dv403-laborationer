@@ -27,7 +27,15 @@ window.onload = function(){
 			}
 		}; 	
 	
-	
+	/*
+	if(str.charAt(i) == str.charAt(i).toUpperCase()){
+		str.charAt(i).toLowerCase()
+	}
+	else
+	{
+		str.charAt(i).toUpperCase()
+	}
+	*/
 	// ------------------------------------------------------------------------------
 
 
