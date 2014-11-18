@@ -15,7 +15,7 @@ var makePerson = function(persArr){
     //Plockar ut åldrarna
     var age = persArr.map(function(age){return age.age;});
     
-    //Hämtar ut max och mini ålder ur ages array
+    //Hämtar ut max och mini ålder ur ages-arrayen
     var minAge = Math.min.apply(Math, age);
     var maxAge = Math.max.apply(Math, age);
     //Lägger ihop alla åldrar för att få fran medelåldern samt sorterar dessa i ordning
