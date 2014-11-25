@@ -1,0 +1,41 @@
+body {
+width: 100%;
+height: 100%;
+margin-right: 50px;
+padding: 0px;
+background-color: #556270
+}
+
+#logo {
+padding: 100px;
+position: absolute;
+top: 100px;
+}
+
+
+
+
+
+
+
+
+
+#button {
+/*vertical-align: top;*/
+
+height: 35px;
+width: 50%;
+background-color: #0ffa4d;
+border: 1px solid #18ab29;
+display: inline-block;
+cursor: pointer;
+color: #ffffff;
+font-family: arial;
+font-size: 20px;
+text-decoration: none;
+text-shadow: 1px 1px 3px #2f6627;
+}
+
+#button:hover {
+background-color: #78fa98;
+}

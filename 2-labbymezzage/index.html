@@ -3,14 +3,39 @@
 <head>
     <meta charset="UTF-8" />
         <title>Labby mezzage</title>
-            <link rel="stylesheet" href="css/style.css"/>
-    <script src="js/message.js"></script>
-    <script src="js/messageEngine.js"></script>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+            <link rel="stylesheet" href="style.css"/>
+   
 </head>
 
 <body>
     
-
+    <div class="row">
+    <div class="col-md-offset-3 col-md-6">
+    
+    
+    <div id="logo">
+            <img src="logo.png" alt="">
+    </div>
+    
+    <div id="message">
+            
+    </div>
+    <div class="well">...</div>
+    
+    <div>
+        <form>
+            <p id="numberOfMess">Antal Medelanden: 0</p>
+                <textarea id="textarea" rows="5" cols="50" placeholder="Skriv ditt meddelande här..."></textarea>
+            <input id="buttom" type="submit" value="SKICKA!" />
+        </form>
+    </div>
+    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+     <script src="message.js"></script>
+    <script src="messageEngine.js"></script>
+    </div>
+    </div>
 </body>
 
 </html>

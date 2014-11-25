@@ -2,7 +2,7 @@
 
 var MessageBoard = {
 
-        messages: [],
+        messages: [], //En array för alla meddelanden.
 
        
 }
