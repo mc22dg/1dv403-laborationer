@@ -1,57 +1,30 @@
-"use strict";
-
-window.onload = function(){
-    
-    function message(message, date){
+function Message(message, date) {
+      
+        this.getText = function() {
+        return message;
+        };
         
-    	this.getText = function(){ //Hämtar meddelandetexten
-                return message;
-        }
-        this.setText = function(_text){ //Sätter meddelandetexten
-                message = _text;
-        }
-        this.getDate = function(){ //Hämtar datumet
-                 return date;
-        }
-        this.setDate = function(_date){ //Sätter datumet
-                   date = _date;
-        }
-
-}
+        this.setText = function(_text) {
+        message = _text;
+        };
         
-Message.prototype.toString = function(){ //En strängpresentation av objektet
-        return this.getText()+" ("+this.getDate()+")";
-        }
+        this.getDate = function() {
+        return date;
+        };
         
-
-Message.prototype.getHTMLText = function() { //Hämtar texten med \n utbytt mot <br>
-return this.getText().replace(/ \n /g, "<br />");
-        }
-
-Message.prototype.getDateText = function(){
-        }
-            
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        this.setDate = function(_date) {
+        date = _date;
+        };
+        
+        Message.prototype.toString = function() {
+        return this.getText() + " ("+this.getDate()+")";
+        };
+        
+        Message.prototype.getHTMLText = function() {
+        return this.getText().replace(/[\n\r]/g, "<br/>");
+        };
+        
+        Message.prototype.getDateText = function(alertDate) {
+        var dateFormat = this.getDate();
+        };
 }
