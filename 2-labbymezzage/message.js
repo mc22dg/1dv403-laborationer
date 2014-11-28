@@ -8,6 +8,18 @@ function Message(message, date) {
         message = _text;
         };
         
+        this.getFormattedTime = function()
+        {
+                var hour = this.getDate.getHours();
+                var minutes = this.getDate.getMinutes();
+                
+                var year = this.getDate.getFullYear();
+                
+                return year;
+                
+        }
+        
+        
         this.getDate = function() {
         return date;
         };
