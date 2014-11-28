@@ -4,7 +4,14 @@
 #numberOfMess{
 float: right;
 }
+#message{
+    overflow-y:scroll;
 
+    height:400px;
+}
+#enkommentar p{
+    word-break:break-all;
+} 
 
 .glyphicon{
 font-size: 30px;

@@ -7,7 +7,28 @@ var MessageBoard = {
     init:function()
     {
         var send = document.getElementById("btn");
-        send.onclick = MessageBoard.sendMessage;
+        send.onclick = function(e){
+            if (document.getElementById("comment").value !== "")
+            {
+            MessageBoard.sendMessage();
+            }
+            else
+            e.preventDefault();
+        };
+        
+        var enter = document.getElementById("comment");
+        enter.onkeypress = function(e){if(e.keyCode === 13 && !e.shiftKey && document.getElementById("comment").value !== "")
+        {
+            e.preventDefault();
+            MessageBoard.sendMessage();
+        }
+        if(e.keyCode === 13 &&  document.getElementById("comment").value === "")
+        {
+            e.preventDefault();
+        }
+        }
+        
+        
     },
     
     sendMessage:function()
@@ -17,7 +38,10 @@ var MessageBoard = {
        MessageBoard.messages.push(message);
        var arrayslot = MessageBoard.messages.length-1;
        console.log(arrayslot);
+       document.getElementById("numberOfMess").innerHTML = "Antal meddelanden: "+MessageBoard.messages.length;
+       document.getElementById("comment").value = "";
        MessageBoard.RenderMessage(arrayslot);
+       
 
     },
     
@@ -45,16 +69,16 @@ var MessageBoard = {
        var imgDelete = document.createElement("img")
        imgClock.src = "clock.png";
        imgDelete.src = "trash.png";
-       
-    imgDelete.onclick = function(){
-       if(confirm("Är du säker på att du vill radera meddelandet"))
-       {
-
-                   MessageBoard.messages.splice(arrayslot, 1)
-                     MessageBoard.RenderMessages();
-       }
+       var timestamp = document.createElement("div");
+       timestamp.innerHTML = MessageBoard.messages[arrayslot].getDateText();
+        imgDelete.onclick = function(){
+           if(confirm("Är du säker på att du vill radera meddelandet"))
+           {
     
-
+                       MessageBoard.messages.splice(arrayslot, 1)
+                        document.getElementById("numberOfMess").innerHTML = "Antal meddelanden: "+MessageBoard.messages.length;
+                         MessageBoard.RenderMessages();
+           }
        }
        
        textfalt.appendChild(imgDelete);
@@ -62,28 +86,21 @@ var MessageBoard = {
        messagesList.appendChild(div);
        
        textfalt.appendChild(imgClock);
+       textfalt.appendChild(timestamp);
        div.appendChild(textfalt);
        messagesList.appendChild(div);
+       var element = document.getElementById("message");
+       element.scrollTop = element.scrollHeight;
+   
        
        imgClock.onclick = function()
        {
-           alert(Message.getFormattedTime)
+           alert( MessageBoard.messages[arrayslot].getFormatedDateText() );
        }
     
-    },
-    
-    DeleteMessages:function() 
-    {  
-        
-        
-        
-        
     }
     
-    
-    
-    
-    
+
 };
 
   

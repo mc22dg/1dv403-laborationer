@@ -8,18 +8,6 @@ function Message(message, date) {
         message = _text;
         };
         
-        this.getFormattedTime = function()
-        {
-                var hour = this.getDate.getHours();
-                var minutes = this.getDate.getMinutes();
-                
-                var year = this.getDate.getFullYear();
-                
-                return year;
-                
-        }
-        
-        
         this.getDate = function() {
         return date;
         };
@@ -36,7 +24,22 @@ function Message(message, date) {
         return this.getText().replace(/[\n\r]/g, "<br/>");
         };
         
-        Message.prototype.getDateText = function(alertDate) {
-        var dateFormat = this.getDate();
+        Message.prototype.getFormatedDateText = function(alertDate) {
+        var date = this.getDate().toLocaleDateString();     
+        var hour = this.getDate().getHours();
+        var minutes = this.getDate().getMinutes();
+        var seconds = this.getDate().getSeconds();
+        
+        return  "Inlägget skapades: " +date+" "+hour+":"+minutes+":"+seconds;
         };
+        
+        Message.prototype.getDateText = function(alertDate) {
+        var hour = this.getDate().getHours();
+        var minutes = this.getDate().getMinutes();
+        var seconds = this.getDate().getSeconds();
+        
+        return  hour+":"+minutes+":"+seconds;
+        };
+                
+                
 }
