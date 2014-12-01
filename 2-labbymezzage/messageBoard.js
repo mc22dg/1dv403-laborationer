@@ -4,9 +4,9 @@ var MessageBoard = {
    
     messages:[],
     
-    init:function()
+    init:function()//Denna funktion styr så att när man klickar på skicka knappen alt. trycker Enter, skickas meddelandet iväg till  
     {
-        var send = document.getElementById("btn");
+        var send = document.getElementById("btn"); 
         send.onclick = function(e){
             if (document.getElementById("comment").value !== "")
             {

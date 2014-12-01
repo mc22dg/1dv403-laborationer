@@ -1,5 +1,6 @@
 #logo{
-    
+position:relative;
+right:20px;
 }
 #numberOfMess{
 float: right;
@@ -12,6 +13,9 @@ float: right;
 #enkommentar p{
     word-break:break-all;
 } 
+#enkommentar img{
+    float:right;
+}
 
 .glyphicon{
 font-size: 30px;
