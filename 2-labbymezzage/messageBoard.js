@@ -65,15 +65,16 @@ var MessageBoard = {
        textfalt.innerHTML = MessageBoard.messages[arrayslot].getHTMLText();
        
     
-       var messagesList = document.getElementById("message");
+        var messagesList = document.getElementById("message");
         //Här skrivs ikonerna och tiden ut   
-       var imgClock = document.createElement("img") 
-       var imgDelete = document.createElement("img")
-       imgClock.src = "clock.png";
-       imgDelete.src = "trash.png";
-       var timestamp = document.createElement("div");
-       timestamp.innerHTML = MessageBoard.messages[arrayslot].getDateText();
+        var imgClock = document.createElement("img") 
+        var imgDelete = document.createElement("img")
+        imgClock.src = "clock.png";
+        imgDelete.src = "trash.png";
+        var timestamp = document.createElement("div");
+        timestamp.innerHTML = MessageBoard.messages[arrayslot].getDateText();
         imgDelete.onclick = function(){     //Här är funktionen/if-satsen för att radera meddelanden
+           
            if(confirm("Är du säker på att du vill radera meddelandet"))
            {
     
