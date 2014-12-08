@@ -3,6 +3,8 @@
 var memory = {
     
     memoryArray: [],
+    counter: 0,
+    last: null ,
     init:function(){
         
         var rows = 4; //rader
@@ -36,17 +38,21 @@ var memory = {
                 
                 var n = j * cols + i;
                 
-                link.innerHTML = memory.memoryArray[n]; 
+                link.number = memory.memoryArray[n];
                 
+                //link.innerHTML = memory.memoryArray[n]; 
+                link.img = img;
                                 
                 img.src = "pics/0.png";
                 
                 //Här läggs cellen i raden
                 row.appendChild(cell);
                 //Här läggs bilden i cellen
-                //link.appendChild(img);
+                link.appendChild(img);
                 //Här läggs länken som har en bild i sig till cellen
                 cell.appendChild(link);
+                
+                
                 
             }
             memory.table.appendChild(row);
@@ -59,7 +65,19 @@ var memory = {
     
     
     flipTile:function(){
-        console.log("hejhopp");
+        this.img.src = "pics/"+ this.number +".png";
+        memory.counter++;
+        
+        
+        if(memory.last != null){
+        
+            if(memory.last.number == this.number){
+                console.log("hurra")
+            }
+        
+        }
+        console.log(this.number);
+        memory.last = this;
     }
     
     
