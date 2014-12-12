@@ -16,20 +16,37 @@ function Quiz(){
 
 Quiz.prototype.process = function(rawdata){
     
+   //översätt data
     var data = JSON.parse(rawdata);
     
+    //presentera meddelandet (kalla på det)
+   this.showMessage(data.message);
    
+    //fått en fråga
+    if (data.question) {
+        this.showQuestion(data.question)
+    }
+    //ja
     
+    //nej
     
     console.log(data);
 };
 
 Quiz.prototype.showMessage = function(text){
     
-     var element = document.getElementById("message");
-     element.innerHTML = text;
+    var element = document.getElementById("message");
+    element.innerHTML = text;
     
 };
+
+Quiz.prototype.showQuestion = function(text){
+  
+    var element = document.getElementById("question");
+    element.innerHTML = text;
+    
+};
+
 
 Quiz.prototype.fetchQuestion = function(url){
   var that = this;
