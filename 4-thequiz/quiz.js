@@ -39,6 +39,7 @@ Quiz.prototype.process = function(rawdata,status){
         
         button.onclick = function() {
             that.sendAnswer(data.nextURL);
+            
         };
     }
     else {
