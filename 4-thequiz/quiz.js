@@ -29,6 +29,14 @@ Quiz.prototype.process = function(rawdata,status){
         this.showQuestion(data.question);
         var button = document.getElementById("button");
         var that = this;
+
+        var count = 0;
+        button.onclick = count ++;
+        var counter = document.getElementById("counter");
+        //counter.innerHTML = count;
+        console.log(count);
+        alert("Det tog dig "+ count + " försök att klara frågan.")
+        
         button.onclick = function() {
             that.sendAnswer(data.nextURL);
         };
@@ -62,6 +70,7 @@ Quiz.prototype.showMessage = function(text){
     
     var element = document.getElementById("message");
     element.innerHTML = text;
+    
     
 };
 
@@ -113,4 +122,10 @@ Quiz.prototype.sendAnswer = function(url){
     this.talker.setRequestHeader("Content-Type","application/json");
     this.talker.send(json);
   
+  
+//Quiz.prototype.counter = function(){
+  //  var tryconut = 0;
+//    document.getElementById("count");
+  //  count.
+//}
 };
