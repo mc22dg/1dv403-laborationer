@@ -13,6 +13,8 @@ window.onload = function(){
 function Quiz(){
     
     this.talker = new XMLHttpRequest();
+    this.count = 0;
+    this.countArray = [];
 }
 
 
@@ -30,26 +32,40 @@ Quiz.prototype.process = function(rawdata,status){
         var button = document.getElementById("button");
         var that = this;
 
-        var count = 0;
-        button.onclick = count ++;
         var counter = document.getElementById("counter");
         //counter.innerHTML = count;
-        console.log(count);
-        alert("Det tog dig "+ count + " försök att klara frågan.")
+        console.log(this.count);
+        //alert("Det tog dig "+ this.count + " försök att klara frågan.")
         
         button.onclick = function() {
             that.sendAnswer(data.nextURL);
+            that.count++;
             
         };
     }
     else {
         if(status == 200){
             if(data.nextURL){
+                this.countArray.push(this.count);
+                this.count = 0;
                 this.fetchQuestion(data.nextURL);
             }
             else{
                 var done = document.getElementById("done");
                 done.innerHTML = "Du klarade alla frågor!";
+                
+                console.log(this.countArray);
+                var points = document.querySelector("#points") //Hämtar
+               
+                //this.countArray.foreach{}
+                points.innerHTML = "Poäng";
+                for(var i = 0; i < this.countArray.length; i++){
+                    points.innerHTML += "<br>Fråga"+(i+1)+":"+this.countArray[i];
+                }
+                
+                
+                
+                
                 this.showMessage("");
                 this.sendAnswer("");
                 this.showResult("");

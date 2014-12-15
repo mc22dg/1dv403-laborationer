@@ -1,7 +1,7 @@
 "use script";
 
 
-window.onload=function(){
+window.onload = function(){
     
     var desk = new Desktop(); 
     
