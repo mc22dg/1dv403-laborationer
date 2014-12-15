@@ -2,7 +2,7 @@
 
 window.onload = function(){
     
-    var quiz = new Quiz();
+    var quiz = new Quiz(); //Instans av klass genom objekt
     
     //Här är länken för frågorna
     quiz.fetchQuestion("http://vhost3.lnu.se:20080/question/1");
@@ -20,14 +20,15 @@ function Quiz(){
 
 Quiz.prototype.process = function(rawdata,status){
     
-   //översätt datan
+    //Översätter datan
     var data = JSON.parse(rawdata);
     
-    //presentera meddelandet (kalla på det)
-   this.showMessage(data.message);
+    //Presentera meddelandet (kallar på det)
+    this.showMessage(data.message);
    
-    //fått en fråga
-    if (data.question) {
+    //Fått en fråga
+    if (data.question) 
+    {
         this.showQuestion(data.question);
         var button = document.getElementById("button");
         var that = this;
@@ -35,16 +36,14 @@ Quiz.prototype.process = function(rawdata,status){
         var counter = document.getElementById("counter");
         //counter.innerHTML = count;
         console.log(this.count);
-        //alert("Det tog dig "+ this.count + " försök att klara frågan.")
-        
+
         button.onclick = function() {
             that.sendAnswer(data.nextURL);
             that.count++;
-            
-        };
+    };
     }
     else {
-        if(status == 200){
+        if(status == 200){ //Allt är ok
             if(data.nextURL){
                 this.countArray.push(this.count);
                 this.count = 0;
@@ -59,12 +58,9 @@ Quiz.prototype.process = function(rawdata,status){
                
                 //this.countArray.foreach{}
                 points.innerHTML = "Poäng";
-                for(var i = 0; i < this.countArray.length; i++){
+                for(var i = 0; i < this.countArray.length; i++){ //Loop som räknar antalet gissningar på varje fråga
                     points.innerHTML += "<br>Fråga"+(i+1)+":"+this.countArray[i];
                 }
-                
-                
-                
                 
                 this.showMessage("");
                 this.sendAnswer("");
@@ -78,8 +74,6 @@ Quiz.prototype.process = function(rawdata,status){
             
         }
     }
-
-    
     console.log(data);
 };
 
@@ -87,22 +81,18 @@ Quiz.prototype.showMessage = function(text){
     
     var element = document.getElementById("message");
     element.innerHTML = text;
-    
-    
 };
 
 Quiz.prototype.showQuestion = function(text){
   
     var element = document.getElementById("question");
     element.innerHTML = text;
-    
 };
 
 Quiz.prototype.showResult = function(text){
     var result = document.getElementById("result");
     result.innerHTML = text;
 };
-
 
 Quiz.prototype.fetchQuestion = function(url){
   var that = this;
@@ -122,7 +112,7 @@ Quiz.prototype.fetchQuestion = function(url){
 Quiz.prototype.sendAnswer = function(url){
   
   var input = document.getElementById("comment").value;
-  var json = JSON.stringify( { answer: input } );
+  var json = JSON.stringify( { answer: input } ); //Översätter datan
   console.log(json + " url: " + url);
   
   var that = this;
@@ -138,11 +128,4 @@ Quiz.prototype.sendAnswer = function(url){
     this.talker.open("POST", url, true);
     this.talker.setRequestHeader("Content-Type","application/json");
     this.talker.send(json);
-  
-  
-//Quiz.prototype.counter = function(){
-  //  var tryconut = 0;
-//    document.getElementById("count");
-  //  count.
-//}
 };
