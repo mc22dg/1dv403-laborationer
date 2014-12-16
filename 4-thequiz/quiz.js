@@ -17,7 +17,7 @@ function Quiz(){
     this.countArray = [];
 }
 
-
+//
 Quiz.prototype.process = function(rawdata,status){
     
     //Översätter datan
@@ -33,7 +33,7 @@ Quiz.prototype.process = function(rawdata,status){
         var button = document.getElementById("button");
         var that = this;
 
-        var counter = document.getElementById("counter");
+        //var counter = document.getElementById("counter");
         //counter.innerHTML = count;
         console.log(this.count);
 
@@ -54,7 +54,7 @@ Quiz.prototype.process = function(rawdata,status){
                 done.innerHTML = "Du klarade alla frågor!";
                 
                 console.log(this.countArray);
-                var points = document.querySelector("#points") //Hämtar
+                var points = document.querySelector("#points"); //Hämtar
                
                 //this.countArray.foreach{}
                 points.innerHTML = "Poäng";

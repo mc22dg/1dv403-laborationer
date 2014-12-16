@@ -57,9 +57,6 @@ var memory = {
                 link.appendChild(img);
                 //Här läggs länken som har en bild i sig till cellen
                 cell.appendChild(link);
-                
-                
-                
             }
             memory.table.appendChild(row);
             
@@ -68,7 +65,6 @@ var memory = {
         //append child
         document.getElementById("table").appendChild(memory.table);
     },
-    
     
     flipTile:function(){
         
@@ -99,7 +95,6 @@ var memory = {
                 }
                 else{
                     
-                    
                     var last = memory.last;
                     var that = this;
                     
@@ -112,16 +107,12 @@ var memory = {
                     }, 1000);
                     
                 }
-                
-                
                 memory.counter = 0
             }
         }
-        
         memory.last = this;
     }
-    
-    
+
 };
 
 window.onload = memory.init;
