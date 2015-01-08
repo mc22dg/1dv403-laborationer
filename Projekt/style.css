@@ -29,10 +29,30 @@ html, body
     background-color:white;
     width:100%;
     height:300px;
+    overflow: scroll;
+    text-align:center;
+   
+}
+.box ul{
+    
     list-style:none;
-    display: inline-block;
+    margin-top:0px;
+    padding-left:0px;
+   
     
 }
+.box ul li{
+    background-color:#95a5a6;
+    display: inline-block; 
+    text-align:center;
+    padding:5px;
+    margin:3px;
+    
+}
+.box img{
+    border:3px;
+}
+
 .underline{
     background-color:gray;
     width:100%;
@@ -53,7 +73,11 @@ html, body
     height:40px;
 }
 
-
+.window
+{
+    overflow: hidden;
+    width: 400px;
+}
 
 .close{
     float:right;
