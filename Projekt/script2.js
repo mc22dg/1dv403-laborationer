@@ -57,10 +57,14 @@ var Projekt = {
            var xmlHttp = null;
 
     xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/", false );
+    xmlHttp.open( "GET", "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/", true );
     xmlHttp.send( null );
-    
-    var data  = JSON.parse(xmlHttp.responseText);
+    xmlHttp.onreadystatechange=function()
+      {
+      if (xmlHttp.readyState==4 )
+        {
+        document.querySelector(".underline").innerHTML='';
+         var data  = JSON.parse(xmlHttp.responseText);
 
     var thumbWidth = 0;
     var thumbHeight = 0;
@@ -120,6 +124,9 @@ var Projekt = {
             
    
 
+        }
+      }
+   
     },
     Desktop:function(){  //Konstruktor
     
