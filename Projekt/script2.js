@@ -1,28 +1,27 @@
 "use strict";
-
+//Initierar hela applikationen
 window.onload = function() {
 
-    var desk = new Projekt.Desktop(); //Är hela sidan
+    var desk = new Projekt.Desktop();
 
     new Projekt.Start(desk);
 
-    new Projekt.Window(desk, '<img src="pics/icon_globe.png">'); // Fönstret som kommer upp, desk = referens till desktop.js, first = namnet på rutan
-
-    new Projekt.Gallery(); //var wind2 = new Projekt.Window(desk, "Second") // Andra rutan
+    new Projekt.Gallery();
 
 };
-
+//Hela applikationen ligger i ett objekt vid namn Projekt 
 var Projekt = {
     closed: true,
+    //Funktion som ansvarar för att skapa ett fönster
     Window: function(desktop, title) {
         {
             if (Projekt.closed) {
                 Projekt.closed = false;
-                var template = document.querySelector("#template"); //Hämtar template från index.html
-                var windowTemplate = template.content.querySelector(".window"); //Hämtar window som ligger i template
-                this.w = windowTemplate.cloneNode(true); //Clonar det som står i windowTemplate och sätter det på variabeln w
+                var template = document.querySelector("#template"); 
+                var windowTemplate = template.content.querySelector(".window"); 
+                this.w = windowTemplate.cloneNode(true); 
 
-                var titleElement = this.w.querySelector(".title"); //Title läggs i titleElement
+                var titleElement = this.w.querySelector(".title"); 
                 titleElement.innerHTML = title;
                 desktop.element.appendChild(this.w);
 
@@ -42,6 +41,7 @@ var Projekt = {
         self.w.parentNode.removeChild(self.w);
 
     },
+    //Funktion som ansvarar för startmenyn och onklick-eventet för att öppna ett fönster
     Start: function(desk) {
         var start = document.getElementById("start");
         var img = document.createElement("img");
@@ -52,6 +52,9 @@ var Projekt = {
             new Projekt.Gallery(w);
         };
     },
+    //Funktion som ansvarar för galleriet. Här hämtas bilderna från servern och presenteras som tumnagelbilder
+    //De läggs i ett objekt där varje bild får unika värden och läggs sedan in i boxen (fönstert)
+    //Sätter även bakrundsbilden
     Gallery: function() {
         var xmlHttp = null;
         xmlHttp = new XMLHttpRequest();
@@ -64,10 +67,10 @@ var Projekt = {
                 var thumbWidth = 0;
                 var thumbHeight = 0;
                 var html = "<ul>";
-                var x = 0;
+                var imgId = 0;
                 var big_images = [];
                 data.forEach(function(value) { //En loop som via if-staserna kontrollerar bildernas höjd och bredd samt skapar dem i boxen.
-                    x++;
+                    imgId++;
                     //Här kontrolleras tumbildernas högsta värden på höjd och bredd
                     if (value.thumbWidth > thumbWidth) {
                         thumbWidth = value.thumbWidth;
@@ -77,12 +80,12 @@ var Projekt = {
                     }
                     //Här skickas de stora bilderna in i ett objekt
                     big_images.push({
-                        id: 'bild-' + x,
+                        id: 'bild-' + imgId,
                         url: value.URL
                     });
 
                     //Här får bilderna unika världen
-                    html += '<li><img id="bild-' + x + '" src="' + value.thumbURL + '"></li>';
+                    html += '<li><img id="bild-' + imgId + '" src="' + value.thumbURL + '"></li>';
                 });
                 html += '</ul>';
 
@@ -90,10 +93,10 @@ var Projekt = {
                 var box = document.querySelector(".box");
                 box.innerHTML = html;
 
-                var hejhopp = document.querySelectorAll(".box img");
-                for (var i = 0; i < hejhopp.length; i++) {
-                    console.log(hejhopp[i]);
-                    hejhopp[i].onclick = function() {
+                var boxImg = document.querySelectorAll(".box img");
+                for (var i = 0; i < boxImg.length; i++) {
+                    console.log(boxImg[i]);
+                    boxImg[i].onclick = function() {
                         var cur_id = this.id;
                         big_images.forEach(function(value) {
 
@@ -106,7 +109,7 @@ var Projekt = {
                     };
                 }
 
-                //Här läggs bilderna in i liselementet
+                //Här läggs bilderna in i listelementet
                 var el = document.querySelectorAll(".box li");
                 for (var i = 0; i < el.length; i++) {
                     el[i].style.width = thumbWidth + "px";
