@@ -1,4 +1,5 @@
 "use strict";
+
 //Initierar hela applikationen
 window.onload = function() {
 
@@ -6,9 +7,8 @@ window.onload = function() {
 
     new Projekt.Start(desk);
 
-    new Projekt.Gallery();
-
 };
+
 //Hela applikationen ligger i ett objekt vid namn Projekt 
 var Projekt = {
     closed: true,
@@ -20,9 +20,8 @@ var Projekt = {
                 var template = document.querySelector("#template"); 
                 var windowTemplate = template.content.querySelector(".window"); 
                 this.w = windowTemplate.cloneNode(true); 
-
                 var titleElement = this.w.querySelector(".title"); 
-                titleElement.innerHTML = title;
+                titleElement.innerHTML = title+"The globe";
                 desktop.element.appendChild(this.w);
 
                 var self = this;
@@ -48,13 +47,13 @@ var Projekt = {
         img.src = "pics/blue_plus_icon.png";
         start.appendChild(img);
         img.onclick = function() {
-            var w = new Projekt.Window(desk, '<img src="pics/icon_globe.png">'); //First
+            var w = new Projekt.Window(desk, '<img src="pics/icon_globe.png">');
             new Projekt.Gallery(w);
         };
     },
-    //Funktion som ansvarar för galleriet. Här hämtas bilderna från servern och presenteras som tumnagelbilder
-    //De läggs i ett objekt där varje bild får unika värden och läggs sedan in i boxen (fönstert)
-    //Sätter även bakrundsbilden
+    /*Funktion som ansvarar för galleriet. Här hämtas bilderna från servern och presenteras som tumnagelbilder
+    De läggs i ett objekt där varje bild får unika värden och läggs sedan in i boxen (fönstert)
+    Sätter även bakrundsbilden*/
     Gallery: function() {
         var xmlHttp = null;
         xmlHttp = new XMLHttpRequest();
@@ -69,27 +68,24 @@ var Projekt = {
                 var html = "<ul>";
                 var imgId = 0;
                 var big_images = [];
-                data.forEach(function(value) { //En loop som via if-staserna kontrollerar bildernas höjd och bredd samt skapar dem i boxen.
+                data.forEach(function(value) { 
                     imgId++;
-                    //Här kontrolleras tumbildernas högsta värden på höjd och bredd
+                  
                     if (value.thumbWidth > thumbWidth) {
                         thumbWidth = value.thumbWidth;
                     }
                     if (value.thumbHeight > thumbHeight) {
                         thumbHeight = value.thumbHeight;
                     }
-                    //Här skickas de stora bilderna in i ett objekt
                     big_images.push({
                         id: 'bild-' + imgId,
                         url: value.URL
                     });
 
-                    //Här får bilderna unika världen
                     html += '<li><img id="bild-' + imgId + '" src="' + value.thumbURL + '"></li>';
                 });
                 html += '</ul>';
 
-                //Här läggs bilderna in i boxen
                 var box = document.querySelector(".box");
                 box.innerHTML = html;
 
@@ -109,7 +105,6 @@ var Projekt = {
                     };
                 }
 
-                //Här läggs bilderna in i listelementet
                 var el = document.querySelectorAll(".box li");
                 for (var i = 0; i < el.length; i++) {
                     el[i].style.width = thumbWidth + "px";
@@ -118,8 +113,7 @@ var Projekt = {
             }
         };
     },
-    Desktop: function() { //Konstruktor
-
+    Desktop: function() {
         this.element = document.querySelector("#desktop");
     }
 };
