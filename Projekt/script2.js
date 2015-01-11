@@ -5,7 +5,9 @@ window.onload = function() {
 
     var desk = new Projekt.Desktop();
 
-    new Projekt.Start(desk);
+    Projekt.Start(desk);
+    
+    setInterval(function () {Projekt.Clock()}, 1000);
 
 };
 
@@ -40,12 +42,25 @@ var Projekt = {
         self.w.parentNode.removeChild(self.w);
 
     },
+    //En liten extrafunktion :)
+    Clock: function(){
+            var clock_time = new Date();
+            var hours = clock_time.getHours();
+            var minutes = clock_time.getMinutes();
+            var seconds = clock_time.getSeconds();
+            var clock = document.getElementById("clock")
+            clock.innerHTML = "Klockan är: " +hours+":"+minutes+":"+seconds;
+    },
     //Funktion som ansvarar för startmenyn och onklick-eventet för att öppna ett fönster
     Start: function(desk) {
+        
         var start = document.getElementById("start");
         var img = document.createElement("img");
+        var img2 = document.createElement("img")
+        img2.src = "pics/blue_plus_icon.png";
         img.src = "pics/blue_plus_icon.png";
         start.appendChild(img);
+        start.appendChild(img2);
         img.onclick = function() {
             var w = new Projekt.Window(desk, '<img src="pics/icon_globe.png">');
             new Projekt.Gallery(w);
